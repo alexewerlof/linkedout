@@ -138,7 +138,12 @@ export function ActivityCard({
   }
 
   // Render person-like activities using the shared rows
-  if (activity.kind === 'connection' || activity.kind === 'member-follow') {
+  if (
+    activity.kind === 'connection' ||
+    activity.kind === 'member-follow' ||
+    activity.kind === 'person-mute' ||
+    activity.kind === 'person-unfollow'
+  ) {
     return (
       <div className="rounded-box border border-base-300 bg-base-100 shadow-sm overflow-hidden">
         <PersonRow
@@ -155,6 +160,10 @@ export function ActivityCard({
           badge={
             activity.kind === 'connection' ? (
               <span className="badge badge-xs badge-success">Established</span>
+            ) : activity.kind === 'person-unfollow' ? (
+              <span className="badge badge-xs badge-ghost">Unfollowed</span>
+            ) : activity.kind === 'person-mute' ? (
+              <span className="badge badge-xs badge-warning">Muted</span>
             ) : (
               <span className="badge badge-xs badge-success">Following</span>
             )

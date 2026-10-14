@@ -18,6 +18,8 @@ export type ActivityKind =
   | 'learning'
   | 'connection'
   | 'member-follow'
+  | 'person-mute'
+  | 'person-unfollow'
   | 'company-follow'
   | 'hashtag-follow'
   | 'recommendation-given'
@@ -605,15 +607,28 @@ export function makeActivities(input: {
     };
   });
 
-  const memberFollows = (input.memberFollows ?? []).map((row) => ({
-    id: `member-follow-${row.__row}`,
-    kind: 'member-follow' as const,
-    date: text(row, 'Date'),
-    dateTemporal: row.__dates?.Date,
-    targetName: text(row, 'FullName') || 'LinkedIn member',
-    text: text(row, 'FullName') || 'Followed a person',
-    eyebrow: text(row, 'Status')?.toLowerCase() === 'unfollow' ? 'Unfollowed' : 'Followed',
-  }));
+  // CHQ: Claude AI (Sonnet) refactored
+  const memberFollows = (input.memberFollows ?? []).map((row) => {
+    const status = text(row, 'Status')?.toLowerCase() ?? '';
+    const name = text(row, 'FullName') || 'LinkedIn member';
+
+    const [kind, eyebrow, label] =
+      status === 'unfollow'
+        ? (['person-unfollow', 'Unfollowed', `Unfollowed ${name}`] as const)
+        : status === 'mute'
+          ? (['person-mute', 'Muted', `Muted ${name}`] as const)
+          : (['member-follow', 'Followed', name] as const);
+
+    return {
+      id: `member-follow-${row.__row}`,
+      kind,
+      date: text(row, 'Date'),
+      dateTemporal: row.__dates?.Date,
+      targetName: name,
+      text: label,
+      eyebrow,
+    };
+  });
 
   const companyFollows = (input.companyFollows ?? []).map((row) => ({
     id: `company-follow-${row.__row}`,

@@ -469,6 +469,8 @@ function ActivityRail({
         { filter: 'vote', label: 'Votes', Icon: Vote },
         { filter: 'repost', label: 'Reposts', Icon: Repeat2 },
         { filter: 'member-follow', label: 'Following', Icon: UserPlus },
+        { filter: 'person-mute', label: 'Muted', Icon: UserPlus },
+        { filter: 'person-unfollow', label: 'Unfollowed', Icon: UserPlus },
         { filter: 'company-follow', label: 'Pages', Icon: Building2 },
         { filter: 'hashtag-follow', label: 'Hashtags', Icon: Hash },
         { filter: 'saved-item', label: 'Saved items', Icon: Bookmark },
@@ -639,6 +641,8 @@ function ActivityRail({
       return 'badge-secondary';
     // Warning
     if (
+      filter === 'person-mute' ||
+      filter === 'person-unfollow' ||
       filter === 'comment' ||
       filter === 'reaction' ||
       filter === 'vote' ||
@@ -764,6 +768,8 @@ function filterFromParams(value: string | null): ActivityFilter {
     value === 'learning' ||
     value === 'connection' ||
     value === 'member-follow' ||
+    value === 'person-unfollow' ||
+    value === 'person-mute' ||
     value === 'company-follow' ||
     value === 'hashtag-follow' ||
     value === 'recommendation-given' ||
