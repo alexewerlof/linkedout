@@ -1,14 +1,30 @@
-# LinkedOut
+<p align="center">
+  <img src="public/out-logo-128.png" alt="LinkedOut logo" width="128" height="128" />
+</p>
 
-Browse your LinkedIn data export locally in the browser. No server, no tracking — your data never leaves your machine.
+<h1 align="center">LinkedOut</h1>
 
-**NOTE: this project is coded by LLMs. While the runtime is strictly sandboxed and it works offline, I think you should know. Read the [privacy statement](./PRIVACY.md)**
+<p align="center">
+  <strong>The missing LinkedIn UI for your own data export.</strong><br />
+  Browse your posts, comments, messages, and more — locally in the browser.<br />
+  No server, no tracking. Your data never leaves your machine.
+</p>
 
-## What It Does
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/linkedout/dcbkghofdjbpmffcieifebmppeiedckc">
+    <img src="https://img.shields.io/badge/Chrome_Web_Store-Get_it-4285F4?logo=googlechrome&amp;logoColor=white" alt="Get LinkedOut on the Chrome Web Store" />
+  </a>
+</p>
 
-Read more [here](https://blog.alexewerlof.com/p/linkedout).
+<p align="center">
+  Read <a href="https://blog.alexewerlof.com/p/linkedout">why LinkedOut exists</a>.
+</p>
 
-## Quick Start
+LinkedIn hands you a copy of your data (thanks, GDPR). LinkedOut turns that raw ZIP into a browsable version of your own LinkedIn: your profile, activity, messages, connections, and the surprising amount of data LinkedIn keeps about you — all rendered offline, with links back to the real thing on LinkedIn wherever possible.
+
+## Run it locally
+
+LinkedOut is a client-only single-page app, so you can also run it yourself from source:
 
 ```bash
 npm install
@@ -17,45 +33,17 @@ npm run dev
 
 Open `http://localhost:5173`, then drag your LinkedIn export ZIP (or `test-data.zip` from this repo) onto the drop zone.
 
-## Available Scripts
+> Developer docs — including the Chrome extension build (`npm run pack`) — live in [AGENTS.md](./AGENTS.md).
 
-| Command                 | Description                                                      |
-| ----------------------- | ---------------------------------------------------------------- |
-| `npm run dev`           | Start the Vite dev server                                        |
-| `npm run build`         | Production build into `dist/`                                    |
-| `npm run preview`       | Preview the production build locally                             |
-| `npm test`              | Run the test suite (Vitest)                                      |
-| `npm run test:watch`    | Run tests in watch mode                                          |
-| `npm run test:coverage` | Run tests with coverage report                                   |
-| `npm run lint`          | Lint with ESLint                                                 |
-| `npm run typecheck`     | TypeScript type checking                                         |
-| `npm run format`        | Format with Prettier                                             |
-| `npm run format:check`  | Check formatting without applying                                |
-| `npm run test-data:zip` | Bundle `test-data/` into `test-data.zip` (for drag-drop testing) |
-| `npm run pack`          | Build the Chrome extension into `dist-extension/`                |
+## Features & Benefits
 
-## Chrome Extension
-
-You can run LinkedOut as a Chrome extension for a more integrated experience:
-
-```bash
-npm run pack
-```
-
-Then open `chrome://extensions`, enable **Developer mode**, click **Load unpacked**, and select the `dist-extension/` folder. Click the LinkedOut icon in your toolbar to open the app in a new tab.
-
-## Tech Stack
-
-| Layer    | Technology                     |
-| -------- | ------------------------------ |
-| Language | TypeScript                     |
-| UI       | React 19 + React Router 7      |
-| Styling  | Tailwind CSS 4 + daisyUI 5     |
-| Build    | Vite                           |
-| Storage  | IndexedDB (via `idb`)          |
-| ZIP      | `fflate` (browser-safe, sync)  |
-| Icons    | `lucide-react`                 |
-| Testing  | Vitest + React Testing Library |
+- **The missing LinkedIn UI.** LinkedIn's own search is useless for your history. LinkedOut lets you find and browse any post, comment, or message you've ever written.
+- **Your LinkedIn, reconstructed offline.** Profile, activity, messages, connections, recommendations, and dozens of other datasets rendered as real views instead of raw CSVs.
+- **Private by design.** No server, no analytics, no tracking. Everything is parsed and stored in your browser's IndexedDB — the extension requests zero permissions and your data never leaves your machine.
+- **See what LinkedIn really knows about you.** Surface the eye-opening files LinkedIn buries: inferences about you, the IP address of every login, and old contact syncs you forgot about.
+- **Tames LinkedIn's messy export.** Broken CSV quoting, mixed date formats, duplicates, and account-numbered filenames are handled for you.
+- **Act, don't just look.** Every record links back to the real thing on LinkedIn, so deleting an old post or reposting a winner is one click away.
+- **Free, open source, and yours to run.** MIT licensed — install it from the Chrome Web Store in seconds, or run it locally from source.
 
 ## Privacy
 

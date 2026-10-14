@@ -46,6 +46,21 @@ The application is a client-only SPA — no server, no backend.
 - Prefer the npm scripts in [package.json](package.json) over direct tool invocations: `npm run dev`, `npm run build`, `npm run pack`, `npm test`, `npm run typecheck`, `npm run lint`, `npm run format:check`, and `npm run format` because the commands in those scripts do not require user's permission and delay.
 - Use `npm run format:check` to verify Prettier formatting and `npm run format` to apply it repo-wide.
 
+| Command                 | Description                                                      |
+| ----------------------- | ---------------------------------------------------------------- |
+| `npm run dev`           | Start the Vite dev server                                        |
+| `npm run build`         | Production build into `dist/`                                    |
+| `npm run preview`       | Preview the production build locally                             |
+| `npm test`              | Run the test suite (Vitest)                                      |
+| `npm run test:watch`    | Run tests in watch mode                                          |
+| `npm run test:coverage` | Run tests with coverage report                                   |
+| `npm run lint`          | Lint with ESLint                                                 |
+| `npm run typecheck`     | TypeScript type checking                                         |
+| `npm run format`        | Format with Prettier                                             |
+| `npm run format:check`  | Check formatting without applying                                |
+| `npm run test-data:zip` | Bundle `test-data/` into `test-data.zip` (for drag-drop testing) |
+| `npm run pack`          | Build the Chrome extension into `dist-extension/`                |
+
 ## Build targets
 
 The project has two separate build configurations:
